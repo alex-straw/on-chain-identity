@@ -5,7 +5,7 @@ let _email = "as17163@bristol.ac.uk"
 let _password = "testing"
 let _hashed_password = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(_password))
 
-describe("TEST: Identity Contract Deployment and Initialisation", function () {
+describe("TEST: Identity Contract Deployment and Verification", function () {
     
     before(async function () {
         Identity = await ethers.getContractFactory('Identity');
@@ -27,4 +27,23 @@ describe("TEST: Identity Contract Deployment and Initialisation", function () {
         expect(email).to.equal(_email);
     });
 
+    describe("TEST: verifyOwner() - Incorrect Password", function () {
+        it("Should fail if a password is given that does not correctly hash to the public hashed password", async function() {
+            await expect(identity.verifyOwner("Incorrect password"))
+            .to.be.revertedWith("Incorrect password")
+        });
+
+    });
+
+    describe("TEST: verifyOwner() - Correct Password", function () {
+
+        before(async function () {
+            await identity.verifyOwner(_password);
+        });
+
+        it("Should be verified", async function() {
+            let verified_state = await identity.verified.call();
+            expect(verified_state).to.be.true;
+        });
+    });
 });
