@@ -19,13 +19,13 @@ contract Identity {
         hash_pass = _hash_pass;
     }
     
-    function verify_owner(string memory password) onlyOwner public {
-        require(keccak256(abi.encodePacked(password)) == hash_pass, "Incorrect password.");
+    function verifyOwner(string memory password) onlyOwner public {
+        require(keccak256(abi.encodePacked(password)) == hash_pass, "Incorrect password");
         verified = true;
     } 
 
     modifier onlyOwner {
-        require(msg.sender == owner, "Only the owner can call this function.");
+        require(msg.sender == owner, "Only the owner can call this function");
             _;
     }
 }
