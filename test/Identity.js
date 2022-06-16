@@ -30,4 +30,9 @@ describe("Identity Contract", function () {
         expect(verified_state).to.be.false;
     });
 
+    it("Should have the correct email address", async function() {
+        let email = await identity.email.call();
+        expect(email).to.equal(_email);
+    });
+
 });
