@@ -10,17 +10,17 @@ contract Identity {
 
     address public owner;
     string public email;
-    bytes32 private hash_pass;
+    bytes32 private hashedPassword;
     bool public verified = false;
 
-    constructor (string memory _email, bytes32 _hash_pass){
+    constructor (string memory _email, bytes32 _hashedPassword){
         owner = msg.sender;
         email = _email;
-        hash_pass = _hash_pass;
+        hashedPassword = _hashedPassword;
     }
     
     function verifyOwner(string memory password) onlyOwner public {
-        require(keccak256(abi.encodePacked(password)) == hash_pass, "Incorrect password");
+        require(keccak256(abi.encodePacked(password)) == hashedPassword, "Incorrect password");
         verified = true;
     } 
 
