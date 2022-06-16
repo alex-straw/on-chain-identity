@@ -41,7 +41,7 @@ contract IdentityFactory {
     }
 
     modifier onlyAdmin {
-        require(msg.sender == admin, "Only the owner can call this function");
+        require(msg.sender == admin, "Only the admin can call this function");
             _;
     }
 }
