@@ -8,7 +8,7 @@ If genuine, a mapping of the email address to this contract address will be foun
 the 'identityFactory.sol' contract.
 */
 
-contract Identity {
+contract Identity {    
 
     address public owner;
     string public email;
