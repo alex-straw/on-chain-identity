@@ -13,8 +13,8 @@ contract Identity {
     bytes32 private hash_pass;
     bool public verified = false;
 
-    constructor (address _owner, string memory _email, bytes32 _hash_pass){
-        owner = _owner;
+    constructor (string memory _email, bytes32 _hash_pass){
+        owner = msg.sender;
         email = _email;
         hash_pass = _hash_pass;
     }
