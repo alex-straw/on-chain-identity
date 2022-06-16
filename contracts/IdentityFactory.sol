@@ -5,10 +5,9 @@ pragma solidity >=0.7.0 <0.9.0;
 
 import "./Identity.sol";
 
-
 /**
- * @title Owner
- * @dev Set & change owner
+This contract is used to create new identities. Only email addresses with non 0x00...
+mappings are genuine identities.
  */
 contract IdentityFactory { 
 
