@@ -14,7 +14,7 @@ contract IdentityFactory {
 
     event CreateIdentity(
         address indexed owner_,
-        address indexed address_,
+        address indexed identityAddress,
         string indexed email_
     );
 
@@ -22,6 +22,7 @@ contract IdentityFactory {
 
     function create(string memory email_, bytes32 hashedPassword_) public {
         Identity identity = new Identity(
+            msg.sender,
             email_,
             hashedPassword_
         );
