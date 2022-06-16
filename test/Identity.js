@@ -3,15 +3,16 @@ const { ethers } = require("hardhat");
 
 let _email = "as17163@bristol.ac.uk"
 let _password = "testing"
-let _hashed_password = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(_password))
+let _hashedPassword = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(_password))
 
 describe("TEST: Identity Contract Deployment and Verification", function () {
     
     before(async function () {
         Identity = await ethers.getContractFactory('Identity');
         identity = await Identity.deploy(
+            await ethers.signer.getAddress(),
             _email,
-            _hashed_password,
+            _hashedPassword,
         );
 
         await identity.deployed();
