@@ -2,10 +2,12 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-/**
- * @title Owner
- * @dev Set & change owner
- */
+/*
+This is an identity contract. It is used to prove that an EOA owns a particular email address.
+If genuine, a mapping of the email address to this contract address will be found by querying
+the 'identityFactory.sol' contract.
+*/
+
 contract Identity {
 
     address public owner;
