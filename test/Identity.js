@@ -25,6 +25,9 @@ describe("Identity Contract", function () {
         expect(owner).to.equal(_owner);
     });
 
-    it("Should be unverified")
+    it("Should be unverified", async function() {
+        let verified_state = await identity.verified.call();
+        expect(verified_state).to.be.false;
+    });
 
 });
