@@ -9,7 +9,14 @@ import "./Identity.sol";
 This contract is used to create new identities. Only email addresses with non 0x00...
 mappings are genuine identities.
  */
+ 
 contract IdentityFactory { 
+
+    address public admin;
+
+    constructor () {
+        admin = msg.sender;
+    }
 
     event CreateIdentity(
         address indexed owner_,
@@ -19,9 +26,9 @@ contract IdentityFactory {
 
     mapping(string => address) public identityMap;
 
-    function create(string memory email_, bytes32 hashedPassword_) public {
+    function create(address owner_, string memory email_, bytes32 hashedPassword_) onlyAdmin public {
         Identity identity = new Identity(
-            msg.sender,
+            owner_,
             email_,
             hashedPassword_
         );
@@ -30,7 +37,11 @@ contract IdentityFactory {
             address(identity),
             email_
         );
-        
         identityMap[email_] = address(identity);
+    }
+
+    modifier onlyAdmin {
+        require(msg.sender == admin, "Only the owner can call this function");
+            _;
     }
 }
