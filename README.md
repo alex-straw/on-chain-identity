@@ -1,6 +1,6 @@
 On-chain-identity creation and verification.
 
-This is part of my master's thesis which aims to use ZK-SNARKS to create an 'anonymous' messaging/broadcasting board with only verified identities being allowed to post/message.
+This is part of my master's thesis which aims to use zk-SNARKS to create an 'anonymous' messaging/broadcasting board with only verified identities being allowed to post/message.
 
 How it works:
 
